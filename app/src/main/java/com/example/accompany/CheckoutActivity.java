@@ -53,4 +53,10 @@ public class CheckoutActivity extends AppCompatActivity
 
         Log.d("CHECKOUT", String.valueOf(items));
     }
+
+    public void placeOrder()
+    {
+        // need to process the credit card.
+        // but for now let's just place the order through the 3rd party
+    }
 }
