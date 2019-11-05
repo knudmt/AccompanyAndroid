@@ -15,11 +15,11 @@ public class TimeFrameModel
         this.EarliestTime = earliestTime;
     }
 
-    public Date setLatestTime(){
+    public Date getLatestTime(){
         return this.LatestTime;
     }
 
-    public void getLatestTime(Date latestTime){
+    public void setLatestTime(Date latestTime){
         this.LatestTime = latestTime;
     }
 }
