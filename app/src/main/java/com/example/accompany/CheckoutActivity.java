@@ -5,17 +5,31 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckoutActivity extends AppCompatActivity
 {
     private ShoppingCart mCart;
+    private Button mPlaceOrderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
         setTitle("Checkout");
+        mPlaceOrderButton = findViewById(R.id.place_order_btn);
+        mPlaceOrderButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                placeOrder();
+            }
+        });
 
         Log.d("CHEKCOUT", "Starting checkout");
 
@@ -56,7 +70,30 @@ public class CheckoutActivity extends AppCompatActivity
 
     public void placeOrder()
     {
-        // need to process the credit card.
-        // but for now let's just place the order through the 3rd party
+        Log.d("INFO", "Place Order called...");
+
+        AppDelivery delivery = new AppDelivery();
+        delivery.setInstructions("In Airport Delivery");
+        delivery.setConcessionName("Chick-Fil-A");
+        delivery.setTotal(new BigDecimal(21.23));
+        AppUser user = new AppUser("test", "404-218-4578", "knudmt@outlook.com", "Terminal B", "6", new BigDecimal(4.06));
+        delivery.setUser(user);
+        List<AppItems> items = new ArrayList<AppItems>();
+        AppItems a = new AppItems("Chicken Sandwhich", new BigDecimal(4.45), 1);
+        items.add(a);
+        delivery.setItems(items);
+
+        Log.d("INFO", "Delivery Item Created");
+        try
+        {
+            Log.d("INFO", "Calling Azure Quote...");
+            SwiftQuote quote = new SwiftQuote(this, delivery);
+            String q = quote.getQuote();
+            Log.d("QUOTE", q);
+        }
+        catch (Exception ex)
+        {
+            Log.d("ERR", ex.getMessage());
+        }
     }
 }

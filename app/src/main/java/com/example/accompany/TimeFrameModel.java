@@ -1,25 +1,30 @@
 package com.example.accompany;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TimeFrameModel
 {
-    private Date EarliestTime;
-    private Date LatestTime;
+    private String EarliestTime;
+    private String LatestTime;
+    private String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'";
+    private SimpleDateFormat format = new SimpleDateFormat(pattern);
 
-    public Date getEarliestTime(){
+
+    public String getEarliestTime(){
         return this.EarliestTime;
     }
 
     public void setEarliestTime(Date earliestTime){
-        this.EarliestTime = earliestTime;
+
+        this.EarliestTime = format.format(earliestTime);
     }
 
-    public Date getLatestTime(){
+    public String getLatestTime(){
         return this.LatestTime;
     }
 
     public void setLatestTime(Date latestTime){
-        this.LatestTime = latestTime;
+        this.LatestTime = format.format(latestTime);
     }
 }

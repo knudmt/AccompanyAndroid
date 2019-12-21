@@ -1,6 +1,7 @@
 package com.example.accompany;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DeliveryBookingModel
@@ -9,7 +10,7 @@ public class DeliveryBookingModel
     private String DeliveryInstructions;
     private Boolean ItemsRequirePurchase;
     private DeliveryBookingItemModel[] Items;
-    private Date PickupTime;
+    private String PickupTime;
     private DeliveryBookingLocationModel PikupDetail;
     private TimeFrameModel DropoffWindow;
     private DeliveryBookingLocationModel DropoffDetail;
@@ -27,6 +28,8 @@ public class DeliveryBookingModel
     private String Template;
     private BigDecimal OrderPrice;
     private OrderPaymentModel Payments;
+    private String pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS'Z'";
+    private SimpleDateFormat format = new SimpleDateFormat(pattern);
 
     public void setReference(String reference){
         this.Reference = reference;
@@ -61,10 +64,10 @@ public class DeliveryBookingModel
     }
 
     public void setPickupTime(Date pickupTime) {
-        PickupTime = pickupTime;
+        PickupTime = format.format(pickupTime);
     }
 
-    public Date getPickupTime(){
+    public String getPickupTime(){
         return PickupTime;
     }
 

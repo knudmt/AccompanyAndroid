@@ -13,27 +13,30 @@ import org.json.JSONObject;
 
 public class SwiftQuote
 {
-    private String mApi = "api/public/v2/quotes?ApiKey=a6940c6c-4ef8-4fbd-b505-25838b94dba7";
-    private MerchantDeliveryBookingModel mBooking;
+    private String mApi = "https://accompanyorder.azurewebsites.net/api/Delivery";
+    private AppDelivery mDelivery;
     private Context mContext;
 
-    public SwiftQuote(Context context, MerchantDeliveryBookingModel booking) throws Exception
+    public SwiftQuote(Context context, AppDelivery delivery) throws Exception
     {
-        if(booking == null){
+        if(delivery == null){
             throw new Exception("Booking cannot be null");
         }
         if(context == null){
             throw new Exception("Context cannot be null");
         }
         mContext = context;
-        mBooking = booking;
+        mDelivery = delivery;
     }
 
     public String getQuote()
     {
-        mBooking = TestDataCreator.CreateTestBooking();
         RequestQueue queue = Volley.newRequestQueue(mContext);
         JSONObject obj = parse();
+        Log.d("INFO", "attempting to get quote.");
+
+
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, mApi, obj, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -50,44 +53,15 @@ public class SwiftQuote
         return "";
     }
 
-    /*
-    public String getQuote()
-    {
-        RequestQueue queue = Volley.newRequestQueue(mContext);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, mApi, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("Response", response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Error.Response", error.getMessage());
-            }
-        })
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String> params = new HashMap<>();
-                params.put("name", "matt");
-                params.put("domain", "http");
-
-                return params;
-            }
-        };
-        queue.add(postRequest);
-
-        return "";
-    }
-     */
 
     private JSONObject parse()
     {
         try
         {
             Gson gson = new Gson();
-            String json = gson.toJson(mBooking);
+            String json = gson.toJson(mDelivery);
+            Log.d("PARSE", json);
+
             return new JSONObject(json);
         }
         catch (Exception ex)
