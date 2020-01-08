@@ -1,6 +1,5 @@
 package com.example.accompany;
 
-public class SwiftBookings
-{
-    
+public class floatingButton {
+
 }

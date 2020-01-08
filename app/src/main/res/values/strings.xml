@@ -54,4 +54,8 @@
     <!-- Server Client ID.  This should be a valid Web OAuth 2.0 Client ID obtained
          from https://console.developers.google.com/ -->
     <string name="server_client_id">YOUR_SERVER_CLIENT_ID</string>
+    <string name="weight">What is your weight?</string>
+    <string name="height">What is your height?</string>
+    <string name="email">What is your email?</string>
+    <string name="button_send">Submit</string>
 </resources>

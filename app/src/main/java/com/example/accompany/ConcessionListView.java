@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +17,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class ConcessionListView extends AppCompatActivity
 {
@@ -118,6 +121,11 @@ public class ConcessionListView extends AppCompatActivity
         });
 
         queue.add(req);
+    }
+
+    public void getInfo(View view) {
+        Intent intent = new Intent(this, additional_info.class);
+        startActivity(intent);
     }
 
 }

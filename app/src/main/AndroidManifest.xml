@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.accompany">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
@@ -10,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuListAdapter"></activity>
+        <activity android:name=".additional_info_display" />
+        <activity android:name=".additional_info" />
+        <activity android:name=".MenuListAdapter" />
         <activity android:name=".RestaurantsAdapter" />
         <activity android:name=".CheckoutActivity" />
         <activity android:name=".ConcessionListView" />
@@ -50,7 +54,5 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
