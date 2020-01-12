@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
@@ -21,6 +22,11 @@ public class CheckoutActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
         setContentView(R.layout.activity_checkout);
         setTitle("Checkout");
         mPlaceOrderButton = findViewById(R.id.place_order_btn);
@@ -37,6 +43,24 @@ public class CheckoutActivity extends AppCompatActivity
         mCart = ShoppingCart.getInstance();
 
         int items = mCart.getItemCount();
+
+        LinearLayout mLayout = (LinearLayout) findViewById(R.id.cart_view);
+        LinearLayout mLayout2 = (LinearLayout) findViewById(R.id.price_view);
+
+        for(int i =0; i<items; i++){
+            Product p = mCart.getItemFromCart(i);
+            String itemName = p.getMenuItem();
+            double itemPrice = p.getPrice();
+            final TextView textView = new TextView(this);
+            final TextView textView2 = new TextView(this);
+            textView.setText(itemName);
+            textView2.setText(Double.toString(itemPrice));
+            mLayout.addView(textView);
+            mLayout2.addView(textView2);
+        }
+
+
+
         TextView totalsExp = findViewById(R.id.totals_txt);
         totalsExp.setTextColor(Color.BLUE);
         // totals text
