@@ -17,14 +17,18 @@
             android:id="@+id/inputSearch"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Search restaurants..." />
-
+            android:layout_marginTop="124dp"
+            android:hint="Search restaurants..."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/concession_list"
-            android:layout_width="406dp"
-            android:layout_height="455dp"
-            android:layout_marginTop="50dp"
+            android:layout_width="405dp"
+            android:layout_height="356dp"
+            android:layout_marginTop="172dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,6 +60,22 @@
             app:layout_constraintTop_toBottomOf="@+id/concession_list"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/shopping_cart" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="238dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="31dp"
+            android:text="Restuarants"
+            android:textColor="#5054B4"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/inputSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
