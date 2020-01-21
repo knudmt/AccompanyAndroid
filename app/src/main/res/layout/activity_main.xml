@@ -19,10 +19,13 @@
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="244dp"
+        android:layout_height="56dp"
+        android:backgroundTint="#FC0000"
         android:onClick="PerformLogin"
         android:text="Login"
+        android:textColor="#F8F8F6"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"

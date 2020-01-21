@@ -196,7 +196,7 @@ public class ConcessionListView extends AppCompatActivity
     }
 
     public void goHome(View view) {
-        Intent intent = new Intent(this, ConcessionListView.class);
+        Intent intent = new Intent(this, new_menu.class);
         startActivity(intent);
     }
 

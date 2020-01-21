@@ -29,6 +29,7 @@
             android:layout_height="164dp"
             android:gravity="center"
             android:text="TextView"
+            android:textColor="#5054B4"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -47,17 +48,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
 
+                android:backgroundTint="#FC0000"
                 android:onClick="AddToCart"
-                android:text="Add To Cart" />
+                android:text="Add To Cart"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/checkout_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#FC0000"
                 android:onClick="checkout"
                 android:text="Checkout"
-                 />
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
     </LinearLayout>
