@@ -5,9 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class additional_info extends AppCompatActivity {
 
@@ -54,4 +65,41 @@ public class additional_info extends AppCompatActivity {
         }
 
     }
+
+    public void apiInfo(View view){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://accompanyuserinfoapi.azurewebsites.net/api/info";
+        JSONObject postparams = new JSONObject();
+        try {
+            postparams.put("userEmail", "somename@gmail.com");
+            postparams.put("userWeight", 189);
+            postparams.put("userHeight", "6.1");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, postparams,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Success", "do something");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Failure Callback
+                        Log.d("Fail", "do something else");
+                    }
+                });
+
+
+// Adding the request to the queue along with a unique string tag
+        queue.add(jsonObjReq);
+    }
+
+
 }
