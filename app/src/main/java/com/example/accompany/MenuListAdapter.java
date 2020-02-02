@@ -5,10 +5,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class MenuListAdapter extends BaseAdapter {
 
@@ -50,9 +52,12 @@ public class MenuListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        View rowView = View.inflate(context, R.layout.activity_new_menu, null);
+
+
+        View rowView = View.inflate(context, R.layout.listview_row, null);
         TextView txtView = rowView.findViewById(R.id.txt_name);
         TextView descView = rowView.findViewById(R.id.txt_desc);
+
 
         // get the 'Entrees'
 
