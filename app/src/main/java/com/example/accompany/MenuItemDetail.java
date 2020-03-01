@@ -62,7 +62,7 @@ public class MenuItemDetail extends AppCompatActivity
 
     public void checkout(View view)
     {
-        // shoudl have access to the shopping cart
+        // should have access to the shopping cart
         startActivity(new Intent(MenuItemDetail.this, CheckoutActivity.class));
     }
 }
