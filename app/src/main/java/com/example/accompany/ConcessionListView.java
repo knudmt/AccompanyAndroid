@@ -1,9 +1,6 @@
 package com.example.accompany;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,10 +19,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
 
 public class ConcessionListView extends AppCompatActivity
 {
@@ -36,11 +31,8 @@ public class ConcessionListView extends AppCompatActivity
     private ConcessionAdapterB adapterB;
     private ArrayList<String> restaurantsArrayList;
 
-
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
 
         super.onCreate(savedInstanceState);
@@ -61,7 +53,9 @@ public class ConcessionListView extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                 Intent itemListIntent = new Intent(ConcessionListView.this, MenuListActivity.class);
+                itemListIntent.putExtra("ITEM_ID", String.valueOf(i));
                 startActivity(itemListIntent);
             }
         });
@@ -69,47 +63,44 @@ public class ConcessionListView extends AppCompatActivity
         final EditText inputSearch = (EditText) findViewById(R.id.inputSearch);
 
         inputSearch.addTextChangedListener(new TextWatcher() {
-               @Override
-               public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                                               @Override
+                                               public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-               }
+                                               }
 
-               @Override
-               public void onTextChanged(CharSequence s, int start, int before, int count) {
-                   String charText = inputSearch.getText().toString().trim().toLowerCase();
-                   if (charText.length() == 0) {
-                       int sz = restaurantsArrayList.size();
-                       restaurants = new String [sz];
-                       for (int i=0; i<sz; i++ ) {
-                           restaurants [i] = restaurantsArrayList.get(i);
-                       }
-                   } else {
-                       ArrayList <String> newRestaurantArrayList = new ArrayList<String>();
-                       for (String restaurant : restaurantsArrayList) {
-                           if (restaurant.toLowerCase().contains(charText)) {
-                               newRestaurantArrayList.add(restaurant);
-                           }
-                       }
-                       int sz = newRestaurantArrayList.size();
-                       restaurants = new String [sz];
-                       for (int i=0; i<sz; i++ ) {
-                           restaurants[i] = newRestaurantArrayList.get(i);
-                       }
-                   }
-                   adapterB.update(restaurants);
+                                               @Override
+                                               public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                                   String charText = inputSearch.getText().toString().trim().toLowerCase();
+                                                   if (charText.length() == 0) {
+                                                       int sz = restaurantsArrayList.size();
+                                                       restaurants = new String [sz];
+                                                       for (int i=0; i<sz; i++ ) {
+                                                           restaurants [i] = restaurantsArrayList.get(i);
+                                                       }
+                                                   } else {
+                                                       ArrayList <String> newRestaurantArrayList = new ArrayList<String>();
+                                                       for (String restaurant : restaurantsArrayList) {
+                                                           if (restaurant.toLowerCase().contains(charText)) {
+                                                               newRestaurantArrayList.add(restaurant);
+                                                           }
+                                                       }
+                                                       int sz = newRestaurantArrayList.size();
+                                                       restaurants = new String [sz];
+                                                       for (int i=0; i<sz; i++ ) {
+                                                           restaurants[i] = newRestaurantArrayList.get(i);
+                                                       }
+                                                   }
+                                                   adapterB.update(restaurants);
 
-               }
+                                               }
 
-               @Override
-               public void afterTextChanged(Editable s) {
+                                               @Override
+                                               public void afterTextChanged(Editable s) {
 
-               }
-           }
+                                               }
+                                           }
         );
-
-
     }
-
 
     private String[] jsonArrayToStringArray(JSONArray jsonArray){
 
@@ -165,12 +156,10 @@ public class ConcessionListView extends AppCompatActivity
                         Log.d("ADD", "adding: " + d[i]);
                         restaurants[i] = d[i];
                     }
-
                     // save a copy of restaurants in restaurantsArrayList
 
                     restaurantsArrayList = new ArrayList<String>();
                     restaurantsArrayList.addAll(Arrays.asList(restaurants));
-                    
                     // load view here
                     //adapter.notifyDataSetChanged();
                     adapterB.update(restaurants);
@@ -196,8 +185,8 @@ public class ConcessionListView extends AppCompatActivity
     }
 
     public void goHome(View view) {
-        Intent intent = new Intent(this, new_menu.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, new_menu.class);
+        //startActivity(intent);
     }
 
     public void goToShoppingCart(View view) {

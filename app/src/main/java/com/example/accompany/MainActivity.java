@@ -15,6 +15,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void PerformLogin(View view){
-        startActivity(new Intent(MainActivity.this, SignInActivity.class));
+        startActivity(new Intent(MainActivity.this, ConcessionListView.class));
     }
 }

@@ -27,7 +27,5 @@ public class additional_info_display extends AppCompatActivity {
         textView2.setText(height);
         TextView textView3 = findViewById(R.id.textView8);
         textView3.setText(email);
-
     }
-
 }

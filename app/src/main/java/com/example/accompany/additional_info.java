@@ -1,7 +1,6 @@
 package com.example.accompany;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -119,9 +118,7 @@ public class additional_info extends AppCompatActivity {
         };
 
 
-// Adding the request to the queue along with a unique string tag
+        // Adding the request to the queue along with a unique string tag
         queue.add(jsonObjReq);
     }
-
-
 }

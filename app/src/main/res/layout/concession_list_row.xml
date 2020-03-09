@@ -21,22 +21,22 @@
         >
 
         <TextView
-            android:id="@+id/concession_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="left"
-            android:textColor="#5054B4"
+            android:id="@+id/concession_name"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="left"
+            />
 
         <TextView
-            android:id="@+id/concession_value"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="left"
-            android:textColor="#5054B4"
+            android:id="@+id/concession_value"
             android:textSize="15dp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:gravity="left"
+            />
 
     </LinearLayout>
 </LinearLayout>

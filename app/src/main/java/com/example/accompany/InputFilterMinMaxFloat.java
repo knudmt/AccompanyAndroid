@@ -6,7 +6,7 @@ import android.text.Spanned;
 public class InputFilterMinMaxFloat implements InputFilter {
     private float min, max;
 
-    public InputFilterMinMaxFloat(float min, float max) {
+    public InputFilterMinMaxFloat(float min, float max){
         this.min = min;
         this.max = max;
     }

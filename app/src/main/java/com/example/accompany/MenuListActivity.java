@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class MenuListActivity extends AppCompatActivity {
 
-    private String _url = "https://accompanyconcessions.azurewebsites.net/api/concessions?id=1";
+    private String _url = "https://accompanyconcessions.azurewebsites.net/api/concessions?id=";
 
     private String[] menus = { "loading..." };
     private MenuListAdapter adapter;
@@ -29,11 +29,46 @@ public class MenuListActivity extends AppCompatActivity {
     private JSONArray menuItems = new JSONArray();
     private String concessionName = "";
     private String mCurrentItem = "";
+    private String concessionId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTitle("Chick-fil-a");
+        concessionId = getIntent().getStringExtra("ITEM_ID");
+
+        /* this will need to be changed when we move to another airport. we will need to use lookup table in SQL & API call */
+        switch (concessionId)
+        {
+            case "0":
+                concessionId = "11";
+                this.setTitle("Chick-Fil-A");
+                break;
+
+            case "1":
+                concessionId = "6";
+                this.setTitle("Pei Wei Asian Kitchen");
+                break;
+
+            case "2":
+                concessionId = "7";
+                this.setTitle("PDQ Chicken");
+                break;
+
+            case "3":
+                concessionId = "8";
+                this.setTitle("Starbucks");
+                break;
+
+            case "4":
+                concessionId = "9";
+                this.setTitle("Qdoba Mexican");
+                break;
+            case "5":
+                concessionId = "10";
+                this.setTitle("Wendy's");
+                break;
+        }
+
         setContentView(R.layout.activity_concession_view);
         getMenus();
 
@@ -60,7 +95,7 @@ public class MenuListActivity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest req = new StringRequest(Request.Method.GET, _url, new Response.Listener<String>() {
+        StringRequest req = new StringRequest(Request.Method.GET, _url + concessionId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("**RESPONSE**", response);
@@ -68,11 +103,19 @@ public class MenuListActivity extends AppCompatActivity {
                 try{
 
                     Log.d("PARSING", "attempting a parse");
+                    String temp = response;
 
-                    response = response.replaceAll("[\\\\]{1}[\"]{1}", "\"");
-                    response = response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1);
+                    temp = temp.replace("\\r\\n\\t", "");
+                    temp = temp.replace("\\t", "");
 
-                    JSONObject obj = new JSONObject(response);
+                    temp = temp.replaceAll("[\\\\]{1}[\"]{1}", "\"");
+                    temp = temp.replace("\\r", "");
+                    temp = temp.replace("\\n", "");
+
+                    temp = temp.substring(temp.indexOf("{"), temp.lastIndexOf("}") + 1);
+                    Log.d("PSR", temp);
+
+                    JSONObject obj = new JSONObject(temp);
                     Log.d("PARSED!", "object has been parsed");
 
                     JSONObject menus = obj.getJSONObject("menus");
@@ -84,16 +127,20 @@ public class MenuListActivity extends AppCompatActivity {
 
                     JSONArray categories = menu.getJSONArray("categories");
 
-                    JSONObject entrees = categories.getJSONObject(0);
-                    menuItems = entrees.getJSONArray("menuItems");
+                    int numOfCategories = categories.length();
 
-                    Log.d("LEN", String.valueOf(menuItems.length()));
-                    // update the adapter
-                    adapter.update(menuItems);
+                    for(int i = 0; i < numOfCategories; i++){
+                        JSONObject entrees = categories.getJSONObject(i);
+                        menuItems = entrees.getJSONArray("menuItems");
+                        Log.d("LEN", String.valueOf(menuItems.length()));
+                        // update the adapter
+                        adapter.addMenuItems(menuItems);
+                    }
+
                     adapter.notifyDataSetChanged();
 
-
-                }catch(Exception ex){
+                }
+                catch(Exception ex){
                     Log.d("EX_ERR", ex.getMessage());
                 }
             }
